@@ -5,6 +5,5 @@ import gspread
 
 gc = gspread.oauth()
 
-sh = gc.open('A new spreadsheet for python')
+sh = gc.create('A new spreadsheet for python')
 
-print(sh.sheet2.get('A:A'))
