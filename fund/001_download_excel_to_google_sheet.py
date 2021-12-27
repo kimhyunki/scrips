@@ -8,6 +8,7 @@ from gspread_pandas import Spread, Client
 import xlrd
 import csv
 from bs4 import BeautifulSoup
+import gspread
 
 path = '/Users/khk/Downloads/MagicFormulaInfo_2021-12-24.xls'
 
@@ -42,20 +43,21 @@ for element in HTML_data:
 # DataFrame
 dataFrame = pd.DataFrame(data = data, columns = list_header)
 
-# Converting Pandas DataFrame
-# into CSV file
-#dataFrame.to_csv('Geeks.csv')
+sheetsplit = path.split('.')
 
-#file_name = "./Geeks.csv"
-#df = pd.read_csv(file_name)
+sheetname = sheetsplit[0].split('/')
 
-spread = Spread('test')
-# This will ask to authenticate if you haven't done so before
+gc = gspread.oauth()
 
-# Display available worksheets
-#spread.sheets
+sh = gc.create(sheetname[-1])
 
-sheetname = path.split('/')
+spread = Spread(sheetname[-1])
 
-# Save DataFrame to worksheet 'New Test Sheet', create it first if it doesn't exist
 spread.df_to_sheet(dataFrame, index=False, sheet=sheetname[-1], start='A1', replace=True)
+
+client = Client()
+list_file = client.list_spreadsheet_files(sheetname[-1])
+
+file_id = list (list_file[0].values())
+
+client.move_file(file_id[0], '/펀드')
