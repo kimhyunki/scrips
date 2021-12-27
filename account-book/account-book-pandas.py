@@ -10,13 +10,13 @@ gc = gspread.oauth()
 sh = gc.open('account book')
 spread = Spread('account book')
 
-worksheet = sh.worksheet(title='New Test Sheet')
+worksheet = sh.worksheet(title='가계부')
 dataframe = pd.DataFrame(worksheet.get_all_values())
-sortframe = dataframe.sort_values(by=2, axis=0)
+#sortframe = dataframe.sort_values(by=2, axis=0)
 
-spread.df_to_sheet(sortframe, index=False, sheet='New Test Sheet', start='A1', replace=True)
+#spread.df_to_sheet(dataframe, index=False, sheet='New Test Sheet', start='A1', replace=True)
 
 #print(sh.sheet1.get(0))
 #print (sh.worksheets())
 #print (dataframe)
-print (sortframe)
+print (dataframe)

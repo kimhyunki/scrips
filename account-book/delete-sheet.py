@@ -7,7 +7,7 @@ gc = gspread.oauth()
 
 sh = gc.open('account book')
 
-worksheet = sh.worksheet(title='A worksheet')
+worksheet = sh.worksheet(title='New Test Sheet')
 sh.del_worksheet(worksheet)
 
 
