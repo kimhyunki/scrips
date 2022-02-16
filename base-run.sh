@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# pull request test code add
+
 set -Eeuo pipefail
 trap cleanup SIGINT SIGTERM ERR EXIT
 
